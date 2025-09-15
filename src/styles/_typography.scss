@@ -1,0 +1,77 @@
+@import "variables";
+
+h1,
+.heading-xl {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+  color: $color-secondary;
+}
+
+h2,
+.heading-lg {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+  color: $color-secondary;
+}
+
+h3,
+.heading-md {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: $spacing-xs;
+  color: $color-secondary;
+}
+
+h4,
+.heading-sm {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: $spacing-xs;
+  color: $color-secondary;
+}
+
+h5,
+.heading-xs {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: $spacing-xxs;
+  color: $color-secondary;
+}
+
+h6,
+.heading-xxs {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: $spacing-xxs;
+  color: $color-secondary;
+}
+
+// =======================
+// Paragraphs & Text Utils
+// =======================
+
+p {
+  margin-bottom: $spacing-sm;
+}
+
+.text-muted {
+  color: $color-muted;
+}
+
+.text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+.text-center {
+  text-align: center;
+}

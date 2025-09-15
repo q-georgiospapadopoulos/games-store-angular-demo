@@ -1,0 +1,7 @@
+@import "variables";
+@import "mixins";
+
+.main-content {
+  padding: $spacing-lg;
+  height: 80vh;
+}

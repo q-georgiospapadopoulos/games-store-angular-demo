@@ -1,0 +1,21 @@
+@import "variables";
+@import "mixins";
+
+.app-footer {
+  height: 6vh;
+  background-color: $color-primary;
+  color: white;
+  padding: $spacing-sm 0;
+  text-align: center;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+}

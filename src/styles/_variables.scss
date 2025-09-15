@@ -1,0 +1,51 @@
+// =======================
+// Pap's Videoclub Palette
+// =======================
+
+$color-primary: #68318e; // Main branding purple
+$color-secondary: #e3d6d7; // Soft pinkish white (text & bg)
+$color-surface: #a07cac; // Surface color for cards, nav hover
+$color-background: #e3d6d7; // Background same as secondary
+$color-text: #1c1c1c; // Optional deep gray for text (legible on light bg)
+$color-muted: #6b6b6b; // App background (deep purple)
+
+// Utility/semantic
+$color-success: #6bb700;
+$color-warning: #f5a623;
+$color-error: #d92c2c;
+
+// =======================
+// Spacing scale (4px grid)
+// =======================
+
+$spacing-xxs: 2px;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// =======================
+// Typography
+// =======================
+
+$font-family-base: "Share Tech Mono", "Roboto", "Helvetica Neue", sans-serif;
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+
+// =======================
+// Borders and Radius
+// =======================
+
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+
+// =======================
+// Z-index scale
+// =======================
+
+$z-index-header: 1000;
+$z-index-modal: 2000;

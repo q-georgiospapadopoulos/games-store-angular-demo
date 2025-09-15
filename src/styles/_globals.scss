@@ -1,0 +1,97 @@
+@import "variables";
+
+// =======================
+// CSS Reset (Modernized)
+// =======================
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// =======================
+// Base Elements
+// =======================
+
+html {
+  scroll-behavior: smooth;
+  font-size: 20px;
+}
+
+body {
+  background-color: $color-background;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $color-text;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+}
+
+// =======================
+// Anchor Tags
+// =======================
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// =======================
+// Buttons
+// =======================
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+// =======================
+// Images
+// =======================
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// =======================
+// Lists
+// =======================
+
+ul,
+ol {
+  list-style: none;
+}
+
+// =======================
+// Inputs
+// =======================
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  border: 1px solid #ccc;
+  padding: $spacing-sm;
+  border-radius: $border-radius-sm;
+  outline: none;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
