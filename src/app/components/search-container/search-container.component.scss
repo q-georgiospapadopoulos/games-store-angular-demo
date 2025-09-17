@@ -1,0 +1,22 @@
+.search-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-terms-wrapper {
+  flex: 0 0 90%;
+  min-width: 0;
+}
+
+.search-button-wrapper {
+  flex: 0 0 10%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}

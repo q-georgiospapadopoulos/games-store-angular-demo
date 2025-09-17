@@ -1,0 +1,13 @@
+@import "../../../styles/variables";
+
+.search-button {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ::ng-deep .p-button-icon {
+    font-size: $font-size-xl;
+  }
+}

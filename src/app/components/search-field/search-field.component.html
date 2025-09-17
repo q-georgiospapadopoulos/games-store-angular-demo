@@ -1,0 +1,8 @@
+<p-autoComplete
+  [(ngModel)]="selectedField"
+  [suggestions]="suggestions"
+  (completeMethod)="search($event)"
+  placeholder="field"
+  class="search-field"
+>
+</p-autoComplete>

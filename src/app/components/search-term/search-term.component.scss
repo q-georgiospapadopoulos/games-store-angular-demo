@@ -1,0 +1,30 @@
+.search-term-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 10px;
+}
+
+.search-field-wrapper {
+  flex: 0 0 15%;
+  min-width: 0;
+}
+
+.search-operator-wrapper {
+  flex: 0 0 15%;
+  min-width: 0;
+}
+
+.search-keyword-wrapper {
+  flex: 1 0 60%;
+  min-width: 0;
+}
+
+.action-button-wrapper {
+  flex: 0 0 auto;
+  min-width: 0;
+  width: 40px;
+}

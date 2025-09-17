@@ -1,0 +1,11 @@
+@import "../../../styles/variables";
+
+.search-field {
+  width: 100%;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+}
+
+::ng-deep .search-field .p-inputtext {
+  font-size: $font-size-base;
+}

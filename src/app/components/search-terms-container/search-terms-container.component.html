@@ -1,0 +1,10 @@
+<div class="search-terms-container">
+  <app-search-term
+    *ngFor="let term of searchTerms; let i = index"
+    class="search-term-item"
+    [iconType]="i === 0 ? 'pi pi-plus' : 'pi pi-trash'"
+    [index]="i"
+    (actionClick)="onActionClick($event)"
+  >
+  </app-search-term>
+</div>

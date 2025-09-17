@@ -7,6 +7,7 @@ $color-secondary: #e3d6d7; // Soft pinkish white (text & bg)
 $color-surface: #a07cac; // Surface color for cards, nav hover
 $color-background: #e3d6d7; // Background same as secondary
 $color-text: #1c1c1c; // Optional deep gray for text (legible on light bg)
+$color-text-secondary: #333; // Secondary text color (darker gray)
 $color-muted: #6b6b6b; // App background (deep purple)
 
 // Utility/semantic
@@ -34,6 +35,7 @@ $font-family-base: "Share Tech Mono", "Roboto", "Helvetica Neue", sans-serif;
 $font-size-base: 16px;
 $font-size-sm: 14px;
 $font-size-lg: 18px;
+$font-size-xl: 24px;
 
 // =======================
 // Borders and Radius

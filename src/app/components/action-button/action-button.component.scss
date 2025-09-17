@@ -1,0 +1,19 @@
+.action-button {
+  width: 25px;
+  height: 25px;
+
+  // Target the PrimeNG button element
+  ::ng-deep .p-button {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    min-width: unset;
+
+    // Target the icon specifically
+    .p-button-icon {
+      font-size: 15px;
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
