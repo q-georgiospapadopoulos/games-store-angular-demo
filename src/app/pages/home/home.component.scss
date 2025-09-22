@@ -1,4 +1,7 @@
+@import "variables";
+
 .home-container {
+  padding: $spacing-xl;
   display: flex;
   flex-direction: column;
   gap: 30px;
