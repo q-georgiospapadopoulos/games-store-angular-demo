@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.5'
+    id 'scala'
+}
+
+group = 'com.paps.videoclub'
+version = '0.0.1-SNAPSHOT'
+
+java {
+      toolchain {
+          languageVersion = JavaLanguageVersion.of(17)
+      }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Web (REST APIs)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Elasticsearch integration
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+
+    // Scala stdlib
+    implementation 'org.scala-lang:scala-library:2.12.18'
+
+    // Circe for JSON handling
+    implementation "io.circe:circe-core_2.12:0.14.6"
+    implementation "io.circe:circe-generic_2.12:0.14.6"
+    implementation "io.circe:circe-parser_2.12:0.14.6"
+
+    // Env vars from .env files
+    implementation "me.paulschwarz:spring-dotenv:4.0.0"
+
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = ['-target:jvm-17','-deprecation', '-feature']
+}

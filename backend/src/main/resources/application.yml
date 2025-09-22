@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: videoclub-backend
+
+  elasticsearch:
+    uris: ${ES_URI:http://elasticsearch:9200}
+    username: ${ES_USERNAME:}
+    password: ${ES_PASSWORD:}
+
+server:
+  port: 8080

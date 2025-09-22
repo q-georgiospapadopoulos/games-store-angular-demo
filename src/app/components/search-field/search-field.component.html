@@ -1,8 +1,15 @@
 <p-autoComplete
   [(ngModel)]="selectedField"
-  [suggestions]="suggestions"
+  [suggestions]="filteredSuggestions"
   (completeMethod)="search($event)"
+  (onBlur)="onBlurField()"
   placeholder="field"
   class="search-field"
+  [dropdown]="true"
+  [showEmptyMessage]="false"
+  [forceSelection]="false"
+  [autoHighlight]="false"
+  [minLength]="0"
+  (onFocus)="search({ query: '' })"
 >
 </p-autoComplete>
