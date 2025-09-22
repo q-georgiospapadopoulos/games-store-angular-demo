@@ -1,6 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchTermComponent } from '../search-term/search-term.component';
 import { CommonModule } from '@angular/common';
+import { SearchTerm } from '../../store/search/search.models';
+import {
+  addRow,
+  initWithOneRow,
+  removeRow,
+} from '../../store/search/search.actions';
+import { Store } from '@ngrx/store';
+import { selectSearchTerms } from '../../store/search/search.selectors';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-search-terms-container',
@@ -9,16 +18,35 @@ import { CommonModule } from '@angular/common';
   templateUrl: './search-terms-container.component.html',
   styleUrl: './search-terms-container.component.scss',
 })
-export class SearchTermsContainerComponent {
-  searchTerms: any[] = [{}]; // Start with one search term
+export class SearchTermsContainerComponent implements OnInit {
+  searchTerms: SearchTerm[] = [];
+
+  constructor(private store: Store) {
+    console.log('Syncing termss');
+    this.store
+      .select(selectSearchTerms)
+      .pipe(take(1))
+      .subscribe((terms) => {
+        this.searchTerms = terms;
+      });
+  }
+
+  ngOnInit() {
+    this.store.dispatch(initWithOneRow());
+  }
 
   addSearchTerm() {
-    this.searchTerms.push({});
+    this.store.dispatch(addRow());
+    this.searchTerms = [
+      ...this.searchTerms,
+      { field: '', operator: '', keyword: '' },
+    ];
   }
 
   removeSearchTerm(index: number) {
     if (this.searchTerms.length > 1) {
-      this.searchTerms.splice(index, 1);
+      this.store.dispatch(removeRow({ index }));
+      this.searchTerms = this.searchTerms.filter((_, i) => i !== index);
     }
   }
 

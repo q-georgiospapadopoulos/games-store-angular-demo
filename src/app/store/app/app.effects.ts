@@ -15,12 +15,10 @@ export class FieldsEffects {
   load$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FieldsActions.loadFields),
-      withLatestFrom(this.store.select(selectFields)),
-      filter(([, fields]) => !fields?.length),
       switchMap(() =>
         this.api.getFields().pipe(
           map((fields) =>
-            FieldsActions.loadFieldsSuccess({ fields: fields?.fields })
+            FieldsActions.loadFieldsSuccess({ fields: fields['fields'] })
           ),
           catchError((err) =>
             of(

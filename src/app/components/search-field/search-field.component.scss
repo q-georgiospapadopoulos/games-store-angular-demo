@@ -4,8 +4,54 @@
   width: 100%;
   font-size: $font-size-base;
   font-family: $font-family-base;
+
+  // Style the autocomplete dropdown panel
+  ::ng-deep .p-autocomplete-overlay {
+    background-color: rgba($color-secondary, 0.95);
+    border-radius: $border-radius-md;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+  }
+
+  // Style the autocomplete dropdown items
+  ::ng-deep .p-autocomplete-option {
+    background-color: transparent;
+    border-radius: $border-radius-md;
+    color: $color-text;
+    transition: background-color 0.2s ease;
+
+    &.p-autocomplete-option-selected {
+      background-color: $color-surface;
+      color: $color-text;
+      font-weight: 500;
+
+      &:hover {
+        background-color: darken($color-surface, 10%);
+      }
+    }
+
+    &:not(.p-autocomplete-option-selected):hover {
+      background-color: rgba($color-surface, 0.3);
+    }
+  }
 }
 
 ::ng-deep .search-field .p-inputtext {
   font-size: $font-size-base;
+}
+
+::ng-deep
+  .p-component
+  .p-iconwrapper.ng-star-inserted
+  .p-autocomplete-clear-icon {
+  transition: color 0.2s ease, opacity 0.2s ease;
+  right: 1rem;
+  position: absolute;
+  top: 70%;
+  width: 10px;
+
+  &:hover {
+    color: darken($color-text, 20%);
+    opacity: 1;
+  }
 }

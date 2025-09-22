@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { setOperator } from '../../store/search/search.actions';
+import { SearchOperator } from '../../store/search/search.models';
+import { selectSearchTermAt } from '../../store/search/search.selectors';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-search-operator',
@@ -9,9 +14,11 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search-operator.component.html',
   styleUrl: './search-operator.component.scss',
 })
-export class SearchOperatorComponent {
-  selectedOperator: any;
-  operators = [
+export class SearchOperatorComponent implements OnInit {
+  @Input() index!: number;
+  selectedOperator: SearchOperator = '';
+  operators: Array<{ label: string; value: SearchOperator }> = [
+    { label: 'operator', value: '' },
     { label: 'is', value: 'is' },
     { label: 'equals', value: 'equals' },
     { label: 'contains', value: 'contains' },
@@ -20,7 +27,32 @@ export class SearchOperatorComponent {
     { label: 'not equals', value: 'notEquals' },
   ];
 
-  constructor() {
-    this.selectedOperator = this.operators[0]; // Default to "is"
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store
+      .select(selectSearchTermAt(this.index))
+      .pipe(take(1))
+      .subscribe((term) => {
+        if (term && term.operator) {
+          this.selectedOperator = term.operator;
+        } else {
+          this.selectedOperator = '';
+        }
+      });
+  }
+
+  onOperatorChange() {
+    this.store.dispatch(
+      setOperator({
+        index: this.index,
+        operator: this.selectedOperator,
+      })
+    );
+  }
+
+  onClear() {
+    this.selectedOperator = '';
+    this.store.dispatch(setOperator({ index: this.index, operator: '' }));
   }
 }

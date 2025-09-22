@@ -4,7 +4,8 @@ export type SearchOperator =
   | 'contains'
   | 'startsWith'
   | 'endsWith'
-  | 'notEquals';
+  | 'notEquals'
+  | '';
 
 export type LogicalOp = 'AND' | 'OR' | null;
 

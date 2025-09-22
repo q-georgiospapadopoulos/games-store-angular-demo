@@ -5,3 +5,17 @@
   font-size: $font-size-base;
   margin-left: $spacing-xxl;
 }
+
+.input-clear-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.input-clear-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 0.6rem;
+}

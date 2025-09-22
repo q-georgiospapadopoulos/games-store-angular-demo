@@ -1,7 +1,12 @@
-<p-select 
+<p-select
   [(ngModel)]="selectedOperator"
   [options]="operators"
   optionLabel="label"
-  placeholder="Select operator"
-  class="search-operator">
+  optionValue="value"
+  placeholder="operator"
+  class="search-operator"
+  (onChange)="onOperatorChange()"
+  [showClear]="true"
+  (onClear)="onClear()"
+>
 </p-select>

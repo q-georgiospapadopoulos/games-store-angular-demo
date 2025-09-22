@@ -34,4 +34,17 @@
       background-color: rgba($color-surface, 0.3);
     }
   }
+
+  ::ng-deep .p-select-clear-icon {
+    transition: color 0.2s ease, opacity 0.2s ease;
+    right: 1rem;
+    position: absolute;
+    top: 70%;
+    width: 10px;
+
+    &:hover {
+      color: darken($color-text, 20%);
+      opacity: 1;
+    }
+  }
 }

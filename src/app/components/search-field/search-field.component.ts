@@ -1,11 +1,13 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectFields } from '../../store/app/app.selectors';
 import { loadFields } from '../../store/app/app.actions';
 import { setField } from '../../store/search/search.actions';
+import { selectSearchTermAt } from '../../store/search/search.selectors';
+
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-field',
@@ -14,25 +16,29 @@ import { setField } from '../../store/search/search.actions';
   templateUrl: './search-field.component.html',
   styleUrl: './search-field.component.scss',
 })
-export class SearchFieldComponent implements OnInit, OnDestroy {
-  searchField: string = '';
+export class SearchFieldComponent implements OnInit {
   selectedField: string = '';
   @Input() index!: number; // i-th row
-  fields$: Observable<string[]>;
   suggestions: string[] = [];
   filteredSuggestions: string[] = [];
-  private fieldsSubscription?: Subscription;
 
   constructor(private store: Store) {
     this.store.dispatch(loadFields());
-    this.fields$ = this.store.select(selectFields);
   }
 
   ngOnInit() {
-    this.fieldsSubscription = this.fields$.subscribe((fields) => {
+    this.store.select(selectFields).subscribe((fields) => {
       this.suggestions = fields;
-      this.filteredSuggestions = fields; // Initialize filtered suggestions
+      this.filteredSuggestions = fields;
     });
+    this.store
+      .select(selectSearchTermAt(this.index))
+      .pipe(take(1))
+      .subscribe((term) => {
+        if (term) {
+          this.selectedField = term.field;
+        }
+      });
   }
 
   search(event: any) {
@@ -47,15 +53,12 @@ export class SearchFieldComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    if (this.fieldsSubscription) {
-      this.fieldsSubscription.unsubscribe();
-    }
+  storeFieldToStore(event: { value: any }) {
+    this.store.dispatch(setField({ index: this.index, field: event.value }));
   }
 
-  onBlurField() {
-    this.store.dispatch(
-      setField({ index: this.index, field: this.selectedField })
-    );
+  clearField() {
+    this.selectedField = '';
+    this.store.dispatch(setField({ index: this.index, field: '' }));
   }
 }

@@ -11,16 +11,20 @@ export const initialState: FieldsState = {
 
 export const appReducer = createReducer(
   initialState,
-  on(FieldsActions.loadFields, (s) => ({ ...s, loading: true, error: null })),
-  on(FieldsActions.loadFieldsSuccess, (s, { fields }) => ({
-    ...s,
+  on(FieldsActions.loadFields, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(FieldsActions.loadFieldsSuccess, (state, { fields }) => ({
+    ...state,
     fieldCount: fields.length,
     fields,
     loading: false,
     error: null,
   })),
-  on(FieldsActions.loadFieldsFailure, (s, { error }) => ({
-    ...s,
+  on(FieldsActions.loadFieldsFailure, (state, { error }) => ({
+    ...state,
     loading: false,
     error,
   }))

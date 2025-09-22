@@ -1,7 +1,15 @@
-<input
-  type="text"
-  pInputText
-  [(ngModel)]="keyword"
-  placeholder="keyword"
-  class="search-keyword"
-/>
+<div class="input-clear-wrapper">
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="keyword"
+    placeholder="keyword"
+    class="search-keyword"
+    (blur)="storeKeywordToStore(index, keyword)"
+  />
+  <i
+    class="pi pi-times input-clear-icon"
+    *ngIf="keyword"
+    (click)="keyword = ''; storeKeywordToStore(index, '')"
+  ></i>
+</div>

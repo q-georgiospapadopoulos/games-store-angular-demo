@@ -3,7 +3,7 @@ import { LogicalOp, SearchState, SearchTerm } from './search.models';
 
 export const selectSearchState = createFeatureSelector<SearchState>('search');
 
-export const selectConditions = createSelector(
+export const selectSearchTerms = createSelector(
   selectSearchState,
   (s) => s.conditions
 );
@@ -22,12 +22,12 @@ export const selectLoading = createSelector(
 export const selectError = createSelector(selectSearchState, (s) => s.error);
 
 // Factory selector for one row
-export const selectConditionAt = (index: number) =>
-  createSelector(selectConditions, (conds) => conds[index] ?? null);
+export const selectSearchTermAt = (index: number) =>
+  createSelector(selectSearchTerms, (terms) => terms[index] ?? null);
 
 // Build the exact payload your backend expects
 export const selectBuiltQuery = createSelector(
-  selectConditions,
+  selectSearchTerms,
   selectLogicalOperators,
   (conditions, logicalOperator) => {
     const valid = conditions.filter(

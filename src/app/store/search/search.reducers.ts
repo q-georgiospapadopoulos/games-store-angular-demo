@@ -18,7 +18,7 @@ export const searchReducer = createReducer(
     logicalOperator: [null],
     conditions: state.conditions.length
       ? state.conditions
-      : [{ field: '', operator: 'is' as SearchOperator, keyword: '' }],
+      : [{ field: '', operator: '' as SearchOperator, keyword: '' }],
   })),
 
   on(SearchActions.addRow, (state) => ({
@@ -26,7 +26,7 @@ export const searchReducer = createReducer(
     logicalOperator: [...state.logicalOperator, null],
     conditions: [
       ...state.conditions,
-      { field: '', operator: 'is' as SearchOperator, keyword: '' },
+      { field: '', operator: '' as SearchOperator, keyword: '' },
     ],
   })),
 
