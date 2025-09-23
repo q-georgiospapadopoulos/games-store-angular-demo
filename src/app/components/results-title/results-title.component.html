@@ -1,4 +1,11 @@
 <div class="results-title-container">
-  <h3 class="main-title">{{ title }}</h3>
-  <div class="conditions-line" #conditionsLine>{{ conditions$ | async }}</div>
+  <div class="title-content">
+    <h3 class="main-title">{{ title }}</h3>
+    <div class="conditions-line" #conditionsLine>{{ conditions$ | async }}</div>
+  </div>
+  <p-chip
+    class="results-count border border-primary"
+    label="{{ resultsCount$ | async }} results found"
+    severity="info"
+  />
 </div>

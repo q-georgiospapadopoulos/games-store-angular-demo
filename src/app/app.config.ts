@@ -21,6 +21,8 @@ import {
   localStorageMetaReducer,
 } from './store/meta-reducers/localstorage.metareducer';
 import { AppState } from './store/app.state';
+import { providePrimeNG } from 'primeng/config';
+import PapsVideoclubPreset from '../styles/themes/paps-videoclub.preset';
 
 const preloadedState = getPreloadedState();
 
@@ -40,5 +42,11 @@ export const appConfig: ApplicationConfig = {
       }
     ),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    providePrimeNG({
+      theme: {
+        preset: PapsVideoclubPreset,
+      },
+      ripple: true,
+    }),
   ],
 };

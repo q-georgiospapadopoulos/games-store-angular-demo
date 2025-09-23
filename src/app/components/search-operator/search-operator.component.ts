@@ -18,7 +18,6 @@ export class SearchOperatorComponent implements OnInit {
   @Input() index!: number;
   selectedOperator: SearchOperator = '';
   operators: Array<{ label: string; value: SearchOperator }> = [
-    { label: 'operator', value: '' },
     { label: 'is', value: 'is' },
     { label: 'equals', value: 'equals' },
     { label: 'contains', value: 'contains' },

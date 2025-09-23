@@ -6,16 +6,20 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChipModule } from 'primeng/chip';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SearchTerm } from '../../store/search/search.models';
-import { selectSearchTerms } from '../../store/search/search.selectors';
+import {
+  selectResults,
+  selectSearchTerms,
+} from '../../store/search/search.selectors';
 
 @Component({
   selector: 'app-results-title',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ChipModule],
   templateUrl: './results-title.component.html',
   styleUrl: './results-title.component.scss',
 })
@@ -25,6 +29,7 @@ export class ResultsTitleComponent implements OnInit, AfterViewInit {
 
   title: string = 'Games that meet the criteria:';
   conditions$: Observable<string> = new Observable();
+  resultsCount$: Observable<number> = new Observable();
 
   constructor(private store: Store) {}
 
@@ -36,10 +41,12 @@ export class ResultsTitleComponent implements OnInit, AfterViewInit {
           this.buildConditionsString(conditions)
         )
       );
+    this.resultsCount$ = this.store
+      .select(selectResults)
+      .pipe(map((results) => results.length));
   }
 
   ngAfterViewInit(): void {
-    // Subscribe to conditions changes to adjust font size
     this.conditions$.subscribe(() => {
       setTimeout(() => this.adjustFontSize(), 0);
     });
@@ -70,17 +77,22 @@ export class ResultsTitleComponent implements OnInit, AfterViewInit {
     if (!this.conditionsLineRef) return;
 
     const element = this.conditionsLineRef.nativeElement;
-    const container = element.parentElement;
+    const titleContent = element.closest('.title-content');
 
-    if (!container) return;
+    if (!titleContent) return;
 
     element.style.fontSize = '1.2rem';
 
-    if (element.scrollWidth > container.clientWidth) {
+    element.offsetHeight;
+
+    const availableWidth = titleContent.clientWidth - 40;
+
+    if (element.scrollWidth > availableWidth) {
       let fontSize = 1.2;
-      while (element.scrollWidth > container.clientWidth && fontSize > 0.8) {
-        fontSize -= 0.1;
+      while (element.scrollWidth > availableWidth && fontSize > 0.8) {
+        fontSize -= 0.05;
         element.style.fontSize = `${fontSize}rem`;
+        element.offsetHeight;
       }
     }
   }

@@ -1,8 +1,9 @@
 // Import PrimeNG styles
-@import 'primeicons/primeicons.css';
+@import "primeicons/primeicons.css";
+@import "./tailwind.css";
 
 // Import global style modules
-@import 'variables';
-@import 'mixins';
-@import 'typography';
-@import 'globals';
+@import "variables";
+@import "mixins";
+@import "typography";
+@import "globals";
