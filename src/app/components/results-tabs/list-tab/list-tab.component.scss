@@ -1,125 +1,187 @@
+@import "variables";
+
 .list-tab-container {
-  padding: 1rem;
-}
-
-.sort-controls {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.result-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-}
-
-.result-content {
-  flex: 1;
-  margin-right: 1rem;
-}
-
-.result-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-
-  h3 {
-    margin: 0;
-    color: #333;
-    font-size: 1.2rem;
-  }
-}
-
-.result-price {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #28a745;
-}
-
-.result-details {
-  p {
-    margin: 0 0 0.5rem 0;
-    color: #666;
-    line-height: 1.4;
-  }
-}
-
-.result-meta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-
-  span {
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
-
-  .genre {
-    background-color: #e3f2fd;
-    color: #1976d2;
-  }
-
-  .platform {
-    background-color: #f3e5f5;
-    color: #7b1fa2;
-  }
-
-  .rating {
-    background-color: #fff3e0;
-    color: #f57c00;
-  }
-}
-
-.result-actions {
+  height: 54vh;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  min-width: 150px;
-}
+  overflow: auto;
+  font-size: small;
+  background-color: var(--p-chip-background);
 
-.empty-state {
-  text-align: center;
-  padding: 3rem;
-  color: #666;
+  --p-select-sm-font-size: 0.65rem;
+  --p-dataview-header-padding: 0.25rem 0.5rem;
+  --p-dataview-header-background: var(--p-chip-background);
+  --p-dataview-header-border-color: rgba(0, 0, 0, 0);
+  --p-dataview-content-background: var(--p-chip-background);
+  --p-paginator-nav-button-selected-background: color-mix(
+    in srgb,
+    var(--p-chip-background),
+    #000 25%
+  );
+  --p-select-background: var(--p-chip-background);
+  --p-select-border-color: rgba(0, 0, 0, 0);
 
-  p {
-    margin-top: 1rem;
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .result-item {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .result-content {
-    margin-right: 0;
-    margin-bottom: 1rem;
+  ::ng-deep .p-dataview {
+    background: var(--p-chip-background);
   }
 
-  .result-actions {
-    flex-direction: row;
-    justify-content: center;
+  ::ng-deep .p-dataview-content {
+    background: var(--p-chip-background);
+    padding: 0;
   }
 
-  .sort-controls {
-    justify-content: center;
+  ::ng-deep .p-paginator {
+    background: var(--p-chip-background) !important;
+    border: none;
+    padding: 0.5rem;
+  }
+
+  .games-list-container {
+    padding: 0;
+  }
+
+  .game-list-wrapper {
+    margin: 0.5rem;
+
+    &.border-top {
+      border-top: 1px solid
+        color-mix(in srgb, var(--p-chip-background), #000 15%);
+      padding-top: 0.5rem;
+    }
+  }
+
+  .game-list-item {
+    background: var(--p-chip-background);
+    border: 1px solid color-mix(in srgb, var(--p-chip-background), #000 15%);
+    border-radius: 6px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: color-mix(in srgb, var(--p-chip-background), #000 12%);
+      border-color: color-mix(in srgb, var(--p-chip-background), #000 25%);
+    }
+
+    &.selected {
+      background: #{$color-surface};
+      border-color: color-mix(in srgb, #{$color-surface}, #000 25%);
+    }
+  }
+
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--p-chip-background), #000 15%);
+
+    .game-name {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--p-text-color);
+    }
+
+    .game-rank {
+      background: color-mix(in srgb, var(--p-chip-background), #000 20%);
+      color: var(--p-text-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+  }
+
+  .game-details {
+    display: flex;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  .game-info {
+    flex: 1;
+
+    .info-row {
+      display: flex;
+      margin-bottom: 0.4rem;
+
+      .label {
+        min-width: 80px;
+        font-weight: 500;
+        color: var(--p-text-muted-color);
+      }
+
+      .value {
+        color: var(--p-text-color);
+
+        &.genre {
+          background: color-mix(in srgb, #e3f2fd, var(--p-chip-background) 30%);
+          color: #1976d2;
+          padding: 0.15rem 0.4rem;
+          border-radius: 3px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        &.platform {
+          background: color-mix(in srgb, #f3e5f5, var(--p-chip-background) 30%);
+          color: #7b1fa2;
+          padding: 0.15rem 0.4rem;
+          border-radius: 3px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .sales-info {
+    flex: 1;
+
+    .sales-header {
+      font-weight: 600;
+      color: var(--p-text-color);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .sales-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.4rem;
+
+      .sales-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: color-mix(in srgb, var(--p-chip-background), #000 8%);
+        padding: 0.4rem;
+        border-radius: 4px;
+
+        .sales-label {
+          font-size: 0.75rem;
+          color: var(--p-text-muted-color);
+          font-weight: 500;
+        }
+
+        .sales-value {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: var(--p-text-color);
+
+          &.global {
+            color: #28a745;
+            font-weight: 700;
+          }
+        }
+      }
+    }
   }
 }

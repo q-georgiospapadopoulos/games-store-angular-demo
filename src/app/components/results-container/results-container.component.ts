@@ -34,6 +34,9 @@ export class ResultsContainerComponent implements OnInit {
   results: any[] = [];
   constructor(private store: Store) {}
 
+  tabs = ['table', 'list', 'grid'];
+  initialTab = this.tabs[0];
+
   ngOnInit(): void {
     this.store
       .select(selectResults)

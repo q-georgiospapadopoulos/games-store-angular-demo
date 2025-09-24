@@ -2,7 +2,7 @@
   <p-card class="results-card">
     <div *ngIf="results.length === 0" class="no-results">No results found.</div>
     <div *ngIf="results.length > 0" class="results-container">
-      <p-tabs>
+      <p-tabs [value]="initialTab">
         <p-tablist class="tab-list card-header">
           <p-tab value="table"> <i class="pi pi-table mr"></i> Table </p-tab>
           <p-tab value="list"> <i class="pi pi-list mr"></i> List </p-tab>

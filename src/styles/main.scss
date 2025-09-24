@@ -7,3 +7,27 @@
 @import "mixins";
 @import "typography";
 @import "globals";
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--p-chip-background);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--p-chip-background), #000 25%);
+  border-radius: 4px;
+  border: 1px solid var(--p-chip-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--p-chip-background), #000 35%);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--p-chip-background);
+}

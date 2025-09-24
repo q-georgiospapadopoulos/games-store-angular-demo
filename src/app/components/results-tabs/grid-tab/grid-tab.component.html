@@ -1,1 +1,99 @@
-<div class="grid-tab-container"></div>
+<div class="grid-tab-container">
+  <p-dataView
+    [value]="results"
+    [paginator]="true"
+    [rows]="12"
+    [rowsPerPageOptions]="[12, 24, 48, 96]"
+    layout="grid"
+    styleClass="p-dataview-sm"
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
+  >
+    <ng-template #grid let-items>
+      <div class="games-grid-container">
+        <ng-template #header>
+          <div class="flex flex-col md:flex-row md:justify-between">
+            <p-select
+              [options]="sortOptions"
+              [(ngModel)]="sortField"
+              placeholder="Sort By Price"
+              (onChange)="onSortChange($event)"
+              styleClass="mb-0 md:mb-0"
+            />
+          </div>
+        </ng-template>
+        <div *ngFor="let game of items" class="game-grid-wrapper">
+          <div class="game-grid-item">
+            <div
+              class="game-card"
+              [class.selected]="selectedGame === game"
+              (click)="selectedGame = game"
+            >
+              <div class="game-header">
+                <h4 class="game-name">{{ game.name }}</h4>
+                <div class="game-rank">{{ game.rank }}</div>
+              </div>
+
+              <div class="game-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Genre</span>
+                  <span class="meta-value genre">{{ game.genre }}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Platform</span>
+                  <span class="meta-value platform">{{ game.platform }}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Publisher</span>
+                  <span class="meta-value">{{ game.publisher }}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Year</span>
+                  <span class="meta-value">{{ game.year }}</span>
+                </div>
+              </div>
+
+              <div class="sales-section">
+                <div class="sales-title">Sales (millions)</div>
+                <div class="sales-main">
+                  <div class="global-sales">
+                    <span class="sales-label">Global</span>
+                    <span class="sales-value">{{
+                      game.global_sales | number : "1.2-2"
+                    }}</span>
+                  </div>
+                </div>
+                <div class="sales-breakdown">
+                  <div class="sales-item">
+                    <span class="region">NA</span>
+                    <span class="value">{{
+                      game.na_sales | number : "1.2-2"
+                    }}</span>
+                  </div>
+                  <div class="sales-item">
+                    <span class="region">EU</span>
+                    <span class="value">{{
+                      game.eu_sales | number : "1.2-2"
+                    }}</span>
+                  </div>
+                  <div class="sales-item">
+                    <span class="region">JP</span>
+                    <span class="value">{{
+                      game.jp_sales | number : "1.2-2"
+                    }}</span>
+                  </div>
+                  <div class="sales-item">
+                    <span class="region">Other</span>
+                    <span class="value">{{
+                      game.other_sales | number : "1.2-2"
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>
