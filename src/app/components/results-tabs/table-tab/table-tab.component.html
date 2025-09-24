@@ -1,0 +1,41 @@
+<div class="table-tab-container">
+  <p-table
+    [value]="results"
+    [paginator]="true"
+    [rows]="10"
+    [resizableColumns]="true"
+    [tableStyle]="{ 'min-width': '50rem', minHeight: '490px' }"
+    size="small"
+    [rowsPerPageOptions]="[10, 20, 50, 100, 200]"
+    [scrollable]="true"
+    scrollHeight="400px"
+    styleClass="p-datatable-sm"
+    selectionMode="single"
+    [(selection)]="selectedGame"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of cols" pSortableColumn="{{ col.field }}">
+          {{ col.header }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-game>
+      <tr [pSelectableRow]="game">
+        <td>{{ game.name }}</td>
+        <td>{{ game.genre }}</td>
+        <td>{{ game.platform }}</td>
+        <td>{{ game.publisher }}</td>
+        <td>{{ game.year }}</td>
+        <td>{{ game.rank }}</td>
+        <td>{{ game.global_sales | number : "1.2-2" }}</td>
+        <td>{{ game.na_sales | number : "1.2-2" }}</td>
+        <td>{{ game.eu_sales | number : "1.2-2" }}</td>
+        <td>{{ game.jp_sales | number : "1.2-2" }}</td>
+        <td>{{ game.other_sales | number : "1.2-2" }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
