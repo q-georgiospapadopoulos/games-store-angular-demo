@@ -1,5 +1,16 @@
 @import "variables";
 
+.buy-button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-left: 10px;
+  --p-button-primary-background: #{$color-surface};
+  --p-button-primary-color: #{$color-text-secondary};
+  --p-button-sm-font-size: 0.7rem;
+  padding: var(--p-tabs-tab-padding);
+}
+
 .results-card {
   height: 100%;
   font-size: smaller;
@@ -30,7 +41,7 @@
 .tab-list {
   ::ng-deep .p-tablist-tab-list {
     background-color: rgba(0, 0, 0, 0);
-    justify-content: flex-end;
+    justify-content: space-between;
     border-bottom: none;
   }
 

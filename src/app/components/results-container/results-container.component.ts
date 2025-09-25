@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { PanelModule } from 'primeng/panel';
 
@@ -13,6 +12,7 @@ import { selectResults } from '../../store/search/search.selectors';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 import { DividerModule } from 'primeng/divider';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-results-container',
@@ -26,6 +26,7 @@ import { DividerModule } from 'primeng/divider';
     TableTabComponent,
     GridTabComponent,
     DividerModule,
+    Button,
   ],
   templateUrl: './results-container.component.html',
   styleUrl: './results-container.component.scss',

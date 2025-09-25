@@ -4,9 +4,20 @@
     <div *ngIf="results.length > 0" class="results-container">
       <p-tabs [value]="initialTab">
         <p-tablist class="tab-list card-header">
-          <p-tab value="table"> <i class="pi pi-table mr"></i> Table </p-tab>
-          <p-tab value="list"> <i class="pi pi-list mr"></i> List </p-tab>
-          <p-tab value="grid"> <i class="pi pi-th-large mr"></i> Grid </p-tab>
+          <div>
+            <p-button
+              label="Buy"
+              icon="pi pi-cart-plus"
+              size="small"
+              class="buy-button"
+              variant="outlined"
+            />
+          </div>
+          <div class="flex">
+            <p-tab value="table"> <i class="pi pi-table mr"></i> Table </p-tab>
+            <p-tab value="list"> <i class="pi pi-list mr"></i> List </p-tab>
+            <p-tab value="grid"> <i class="pi pi-th-large mr"></i> Grid </p-tab>
+          </div>
         </p-tablist>
         <p-divider class="!m-0 !p-0"></p-divider>
         <p-tabpanels class="tab-panels !m-0 !p-0">

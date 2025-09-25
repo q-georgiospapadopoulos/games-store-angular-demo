@@ -17,11 +17,6 @@ export const routes: Routes = [
     title: 'Results',
   },
   {
-    path: 'details/:gameId',
-    component: DetailsComponent,
-    title: 'Details',
-  },
-  {
     path: 'checkout',
     component: CheckoutComponent,
     title: 'Checkout',
