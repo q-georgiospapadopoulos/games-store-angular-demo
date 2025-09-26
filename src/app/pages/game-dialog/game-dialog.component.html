@@ -69,8 +69,16 @@
           <p-accordion-header>Sales Chart</p-accordion-header>
           <p-accordion-content>
             <div class="sales-chart-content">
-              <!-- Placeholder for pie chart - will implement in next step -->
-              <p>Sales chart will be implemented here</p>
+              <!-- Doughnut Chart for Sales Data -->
+              <div class="chart-container">
+                <p-chart
+                  type="doughnut"
+                  [data]="chartData"
+                  [options]="chartOptions"
+                  class="sales-doughnut-chart"
+                >
+                </p-chart>
+              </div>
             </div>
           </p-accordion-content>
         </p-accordion-panel>
@@ -89,6 +97,7 @@
           label="Add to Cart"
           icon="pi pi-shopping-cart"
           styleClass="p-button-primary add-to-cart-button"
+          (onClick)="onAddToCart()"
         >
         </p-button>
       </div>

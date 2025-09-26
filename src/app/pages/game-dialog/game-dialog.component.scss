@@ -7,6 +7,8 @@
   background-color: $color-background;
   --p-dialog-background: #{$color-background};
   font-size: $font-size-sm;
+  --p-dialog-header-padding: 0.75rem 1.25rem;
+  --p-accordion-header-padding: 0.75rem;
 }
 
 .game-dialog-content {
@@ -135,18 +137,44 @@
 }
 
 .sales-chart-content {
-  padding: $spacing-lg;
-  text-align: center;
-  color: $color-text-secondary;
-  font-style: italic;
+  padding-left: 140px;
+
+  .chart-container {
+    align-items: center;
+    .sales-doughnut-chart {
+      width: 100%;
+      max-width: 400px;
+      height: 400px;
+    }
+
+    .chart-center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: none;
+
+      .global-sales-label {
+        font-size: $font-size-sm;
+        color: $color-text-secondary;
+        font-weight: 500;
+        margin-bottom: $spacing-xs;
+      }
+
+      .global-sales-value {
+        font-size: $font-size-xl;
+        color: $color-text;
+        font-weight: 700;
+      }
+    }
+  }
 }
 
 .dialog-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: $spacing-lg;
-  border-top: 1px solid rgba($color-primary, 0.2);
   margin-top: $spacing-lg;
 
   .cancel-button {
