@@ -11,63 +11,69 @@
   >
     <div *ngIf="selectedGame" class="game-dialog-content" pRipple #rippleDiv>
       <!-- Accordion with two expandable rows -->
-      <p-accordion [multiple]="true" [activeIndex]="[0, 1]">
+      <p-accordion [value]="['0', '1']" [multiple]="true">
         <!-- First Accordion Row: Basic Information -->
-        <p-accordionTab header="Basic Information">
-          <div class="basic-info-content">
-            <!-- Top row: Game name with ripple (left) and Rank chip (right) -->
-            <div class="info-header">
-              <div class="game-name-ripple" pRipple>
-                {{ selectedGame.name }}
+        <p-accordion-panel value="0">
+          <p-accordion-header>Basic Information</p-accordion-header>
+          <p-accordion-content>
+            <div class="basic-info-content">
+              <!-- Top row: Game name with ripple (left) and Rank chip (right) -->
+              <div class="info-header">
+                <div class="game-name-ripple" pRipple>
+                  {{ selectedGame.name }}
+                </div>
+                <p-chip
+                  [label]="'Rank #' + selectedGame.rank"
+                  styleClass="rank-chip"
+                >
+                </p-chip>
               </div>
-              <p-chip
-                [label]="'Rank #' + selectedGame.rank"
-                styleClass="rank-chip"
-              >
-              </p-chip>
-            </div>
 
-            <!-- Bottom row: 4 tags in flex row -->
-            <div class="tags-row">
-              <p-tag
-                [value]="selectedGame.genre"
-                icon="pi pi-tag"
-                styleClass="genre-tag"
-                pRipple
-              >
-              </p-tag>
-              <p-tag
-                [value]="selectedGame.platform"
-                icon="pi pi-desktop"
-                styleClass="platform-tag"
-                pRipple
-              >
-              </p-tag>
-              <p-tag
-                [value]="selectedGame.publisher"
-                icon="pi pi-building"
-                styleClass="publisher-tag"
-                pRipple
-              >
-              </p-tag>
-              <p-tag
-                [value]="selectedGame.year?.toString()"
-                icon="pi pi-calendar"
-                styleClass="year-tag"
-                pRipple
-              >
-              </p-tag>
+              <!-- Bottom row: 4 tags in flex row -->
+              <div class="tags-row">
+                <p-tag
+                  [value]="selectedGame.genre"
+                  icon="pi pi-tag"
+                  styleClass="genre-tag"
+                  pRipple
+                >
+                </p-tag>
+                <p-tag
+                  [value]="selectedGame.platform"
+                  icon="pi pi-desktop"
+                  styleClass="platform-tag"
+                  pRipple
+                >
+                </p-tag>
+                <p-tag
+                  [value]="selectedGame.publisher"
+                  icon="pi pi-building"
+                  styleClass="publisher-tag"
+                  pRipple
+                >
+                </p-tag>
+                <p-tag
+                  [value]="selectedGame.year?.toString()"
+                  icon="pi pi-calendar"
+                  styleClass="year-tag"
+                  pRipple
+                >
+                </p-tag>
+              </div>
             </div>
-          </div>
-        </p-accordionTab>
+          </p-accordion-content>
+        </p-accordion-panel>
 
         <!-- Second Accordion Row: Sales Chart (placeholder for now) -->
-        <p-accordionTab header="Sales Chart">
-          <div class="sales-chart-content">
-            <!-- Placeholder for pie chart - will implement in next step -->
-            <p>Sales chart will be implemented here</p>
-          </div>
-        </p-accordionTab>
+        <p-accordion-panel value="1">
+          <p-accordion-header>Sales Chart</p-accordion-header>
+          <p-accordion-content>
+            <div class="sales-chart-content">
+              <!-- Placeholder for pie chart - will implement in next step -->
+              <p>Sales chart will be implemented here</p>
+            </div>
+          </p-accordion-content>
+        </p-accordion-panel>
       </p-accordion>
 
       <!-- Bottom buttons -->

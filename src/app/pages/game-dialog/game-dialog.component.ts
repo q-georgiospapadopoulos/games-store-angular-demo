@@ -58,6 +58,7 @@ export class GameDialogComponent implements OnInit, AfterViewInit {
   }
 
   triggerCornerRipples() {
+    console.log(this.rippleDiv);
     const div = this.rippleDiv.nativeElement;
     const corners = [
       { x: 0, y: 0 }, // top-left
