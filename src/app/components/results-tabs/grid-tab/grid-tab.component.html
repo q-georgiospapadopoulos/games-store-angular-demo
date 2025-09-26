@@ -27,7 +27,7 @@
             <div
               class="game-card"
               [class.selected]="selectedGame === game"
-              (click)="selectedGame = game"
+              (click)="onSelectGame(game)"
             >
               <div class="game-header">
                 <h4 class="game-name">{{ game.name }}</h4>

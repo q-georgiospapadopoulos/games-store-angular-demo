@@ -30,7 +30,7 @@
           <div
             class="game-list-item"
             [class.selected]="selectedGame === game"
-            (click)="selectedGame = game"
+            (click)="onSelectGame(game)"
             [ngClass]="{ 'border-top': !first }"
           >
             <div class="game-header">

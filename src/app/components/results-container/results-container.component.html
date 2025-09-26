@@ -6,11 +6,13 @@
         <p-tablist class="tab-list card-header">
           <div>
             <p-button
+              *ngIf="selectedGame$ | async as selectedGame"
               label="Buy"
               icon="pi pi-cart-plus"
               size="small"
               class="buy-button"
               variant="outlined"
+              (click)="onBuy(selectedGame)"
             />
           </div>
           <div class="flex">

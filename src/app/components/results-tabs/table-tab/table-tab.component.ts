@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
+import { Store } from '@ngrx/store';
+import { setSelectedGame } from '../../../store/cart/cart.actions';
 
 @Component({
   selector: 'app-table-tab',
@@ -12,6 +14,8 @@ import { TableModule } from 'primeng/table';
 export class TableTabComponent {
   @Input() results: any[] = [];
   selectedGame: any;
+
+  constructor(private store: Store) {}
 
   cols = [
     { field: 'name', header: 'Name' },
@@ -26,4 +30,9 @@ export class TableTabComponent {
     { field: 'jp_sales', header: 'JP Sales' },
     { field: 'other_sales', header: 'Other Sales' },
   ];
+
+  onSelectionChange(selected: any) {
+    this.selectedGame = selected;
+    this.store.dispatch(setSelectedGame({ game: selected }));
+  }
 }

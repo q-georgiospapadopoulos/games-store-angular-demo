@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { loadFields } from '../../../store/app/app.actions';
 import { selectFields } from '../../../store/app/app.selectors';
 import { FormsModule } from '@angular/forms';
+import { setSelectedGame } from '../../../store/cart/cart.actions';
+import { getSelectedGame } from '../../../store/cart/cart.selectors';
 
 @Component({
   selector: 'app-grid-tab',
@@ -45,6 +47,9 @@ export class GridTabComponent {
         value: '!' + this.sortField,
       });
     });
+    this.store.select(getSelectedGame).subscribe((game) => {
+      this.selectedGame = game;
+    });
   }
 
   onSortChange(event: any) {
@@ -57,5 +62,15 @@ export class GridTabComponent {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  onSelectGame(game: any) {
+    if (this.selectedGame && this.selectedGame.rank === game.rank) {
+      this.selectedGame = null;
+      this.store.dispatch(setSelectedGame({ game: null }));
+      return;
+    }
+    this.selectedGame = game;
+    this.store.dispatch(setSelectedGame({ game }));
   }
 }

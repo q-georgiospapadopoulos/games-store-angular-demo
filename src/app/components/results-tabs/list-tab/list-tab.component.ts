@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { loadFields } from '../../../store/app/app.actions';
 import { selectFields } from '../../../store/app/app.selectors';
 import { FormsModule } from '@angular/forms';
+import { setSelectedGame } from '../../../store/cart/cart.actions';
+import { getSelectedGame } from '../../../store/cart/cart.selectors';
 
 @Component({
   selector: 'app-list-tab',
@@ -41,6 +43,9 @@ export class ListTabComponent implements OnInit {
       ]);
       this.sortOptions.unshift({ label: 'No Sorting', value: '' });
     });
+    this.store.select(getSelectedGame).subscribe((game) => {
+      this.selectedGame = game;
+    });
   }
 
   onSortChange(event: any) {
@@ -53,5 +58,15 @@ export class ListTabComponent implements OnInit {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  onSelectGame(game: any) {
+    if (this.selectedGame && this.selectedGame.rank === game.rank) {
+      this.selectedGame = null;
+      this.store.dispatch(setSelectedGame({ game: null }));
+      return;
+    }
+    this.selectedGame = game;
+    this.store.dispatch(setSelectedGame({ game }));
   }
 }

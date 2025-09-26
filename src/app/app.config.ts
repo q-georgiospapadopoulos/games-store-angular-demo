@@ -23,6 +23,7 @@ import {
 import { AppState } from './store/app.state';
 import { providePrimeNG } from 'primeng/config';
 import PapsVideoclubPreset from '../styles/themes/paps-videoclub.preset';
+import { cartReducer } from './store/cart/cart.reducers';
 
 const preloadedState = getPreloadedState();
 
@@ -35,7 +36,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideEffects([SearchEffects, FieldsEffects]),
     provideStore<AppState>(
-      { search: searchReducer, fields: appReducer },
+      { search: searchReducer, fields: appReducer, cart: cartReducer },
       {
         metaReducers: [localStorageMetaReducer],
         initialState: preloadedState,

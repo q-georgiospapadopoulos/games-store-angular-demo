@@ -12,6 +12,7 @@
     styleClass="p-datatable-sm"
     selectionMode="single"
     [(selection)]="selectedGame"
+    (selectionChange)="onSelectionChange($event)"
   >
     <ng-template pTemplate="header">
       <tr>

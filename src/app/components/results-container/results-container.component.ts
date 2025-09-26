@@ -13,7 +13,9 @@ import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 import { DividerModule } from 'primeng/divider';
 import { Button } from 'primeng/button';
-
+import { Observable } from 'rxjs';
+import { getSelectedGame } from '../../store/cart/cart.selectors';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-results-container',
   standalone: true,
@@ -33,7 +35,12 @@ import { Button } from 'primeng/button';
 })
 export class ResultsContainerComponent implements OnInit {
   results: any[] = [];
-  constructor(private store: Store) {}
+  selectedGame$: Observable<any> = new Observable();
+  constructor(
+    private store: Store,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   tabs = ['table', 'list', 'grid'];
   initialTab = this.tabs[0];
@@ -41,13 +48,17 @@ export class ResultsContainerComponent implements OnInit {
   ngOnInit(): void {
     this.store
       .select(selectResults)
-      .pipe(
-        tap((results) => {
-          console.log('Results updated:', results);
-        })
-      )
+      .pipe()
       .subscribe((results) => {
         this.results = [...results];
       });
+
+    this.selectedGame$ = this.store.select(getSelectedGame);
+  }
+
+  onBuy(game: any) {
+    if (game) {
+      this.router.navigate(['dialog'], { relativeTo: this.route });
+    }
   }
 }
