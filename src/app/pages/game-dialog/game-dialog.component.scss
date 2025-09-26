@@ -1,0 +1,236 @@
+@import "variables";
+
+.game-dialog {
+  width: "50rem";
+  max-width: "90vw";
+  border-radius: "8px";
+  background-color: $color-background;
+  --p-dialog-background: #{$color-background};
+  font-size: $font-size-sm;
+}
+
+.game-dialog-content {
+  padding: $spacing-md;
+  font-size: $font-size-sm;
+  background-color: $color-background;
+  pointer-events: none;
+  --p-ripple-background: rgba(156, 39, 176, 0.3);
+
+  .p-accordion {
+    margin-bottom: $spacing-lg;
+
+    .p-accordion-tab {
+      margin-bottom: $spacing-sm;
+
+      .p-accordion-header {
+        background-color: $color-surface;
+        border: 1px solid $color-primary;
+        border-radius: $border-radius-md;
+
+        .p-accordion-header-link {
+          color: $color-text;
+          font-weight: 600;
+          padding: $spacing-md;
+
+          &:hover {
+            background-color: rgba($color-primary, 0.1);
+          }
+        }
+      }
+
+      .p-accordion-content {
+        background-color: $color-background;
+        border: 1px solid $color-primary;
+        border-top: none;
+        border-radius: 0 0 $border-radius-md $border-radius-md;
+        padding: $spacing-lg;
+      }
+    }
+  }
+}
+
+.game-dialog-content > :first-child,
+.game-dialog-content > :nth-child(2) {
+  pointer-events: auto;
+}
+
+.basic-info-content {
+  .info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    gap: $spacing-md;
+
+    .game-name-ripple {
+      flex: 0 0 auto;
+      font-weight: 600;
+      color: $color-text;
+      padding: $spacing-sm $spacing-md;
+      border-radius: $border-radius-md;
+      background-color: rgba($color-primary, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      min-height: 2.5rem;
+
+      &:hover {
+        background-color: rgba($color-primary, 0.2);
+        transform: translateY(-2px);
+      }
+    }
+
+    .rank-chip {
+      background-color: $color-success !important;
+      color: white !important;
+      font-weight: 600;
+      padding: $spacing-sm $spacing-md;
+      border-radius: $border-radius-lg;
+      min-height: 2.5rem;
+      display: flex !important;
+      align-items: center !important;
+    }
+  }
+
+  .tags-row {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+
+    .p-tag {
+      padding: $spacing-sm $spacing-md;
+      border-radius: $border-radius-md;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+
+      &.genre-tag {
+        background-color: rgba($color-primary, 0.2);
+        color: $color-primary;
+        border: 1px solid $color-primary;
+      }
+
+      &.platform-tag {
+        background-color: rgba($color-success, 0.2);
+        color: darken($color-success, 20%);
+        border: 1px solid $color-success;
+      }
+
+      &.publisher-tag {
+        background-color: rgba($color-warning, 0.2);
+        color: darken($color-warning, 20%);
+        border: 1px solid $color-warning;
+      }
+
+      &.year-tag {
+        background-color: rgba($color-surface, 0.5);
+        color: $color-text;
+        border: 1px solid $color-surface;
+      }
+    }
+  }
+}
+
+.sales-chart-content {
+  padding: $spacing-lg;
+  text-align: center;
+  color: $color-text-secondary;
+  font-style: italic;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $spacing-lg;
+  border-top: 1px solid rgba($color-primary, 0.2);
+  margin-top: $spacing-lg;
+
+  .cancel-button {
+    background-color: transparent !important;
+    color: $color-text-secondary !important;
+    border: 1px solid $color-text-secondary !important;
+    padding: $spacing-sm $spacing-lg;
+
+    &:hover {
+      background-color: rgba($color-text-secondary, 0.1) !important;
+    }
+  }
+
+  .add-to-cart-button {
+    background-color: $color-primary !important;
+    color: white !important;
+    border: 1px solid $color-primary !important;
+    padding: $spacing-sm $spacing-lg;
+
+    &:hover {
+      background-color: darken($color-primary, 10%) !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .game-dialog-content {
+    padding: $spacing-sm;
+
+    .basic-info-content {
+      .info-header {
+        flex-direction: column;
+        align-items: stretch;
+
+        .game-name-ripple {
+          text-align: center;
+          margin-bottom: $spacing-sm;
+        }
+
+        .rank-chip {
+          align-self: center;
+        }
+      }
+
+      .tags-row {
+        justify-content: center;
+
+        .p-tag {
+          font-size: $font-size-sm;
+          padding: $spacing-xs $spacing-sm;
+        }
+      }
+    }
+
+    .dialog-footer {
+      flex-direction: column;
+      gap: $spacing-md;
+
+      .p-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.game-name-ripple {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: rgba($color-primary, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  &:active::after {
+    width: 300px;
+    height: 300px;
+  }
+}
